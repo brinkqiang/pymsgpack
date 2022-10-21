@@ -66,6 +66,12 @@ PYBIND11_MODULE(pymsgpack, m) {
     .def("SetLevel", &CPlayerInfo::SetLevel)
     .def("SetName", &CPlayerInfo::SetName);
 
+    pybind11::class_<CPlayerInfoData>(m, "CPlayerInfoData")
+    .def(pybind11::init<>())
+    .def("to_msgpack", &CPlayerInfoData::to_msgpack)
+    .def("from_msgpack", &CPlayerInfoData::from_msgpack)
+    .def_readwrite("mapInfo", &CPlayerInfoData::mapInfo);
+
     pybind11::class_<STaskInfo>(m, "STaskInfo")
     .def(pybind11::init<>())
     .def_readwrite("nTaskID", &STaskInfo::nTaskID)

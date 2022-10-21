@@ -20,3 +20,26 @@ const std::string& CPlayerInfo::GetName()
 {
     return m_strName;
 }
+
+CPlayerInfoData::CPlayerInfoData()
+{
+
+}
+
+CPlayerInfoData::~CPlayerInfoData()
+{
+
+}
+
+std::string CPlayerInfoData::to_msgpack()
+{
+    msgpack::sbuffer sbuf;
+    msgpack::pack(sbuf, *this);
+    return std::string(sbuf.data(), sbuf.size());
+}
+
+void CPlayerInfoData::from_msgpack(const std::string& data)
+{
+   auto oh = msgpack::unpack(data.data(), data.size());
+   oh.get().convert(*this);
+}
