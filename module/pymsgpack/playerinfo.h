@@ -24,8 +24,6 @@ public:
     MSGPACK_DEFINE(m_nLevel, m_strName);
 };
 
-
-
 class CPlayerInfoData
 {
 public:
