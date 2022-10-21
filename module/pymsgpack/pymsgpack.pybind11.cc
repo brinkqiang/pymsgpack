@@ -64,7 +64,9 @@ PYBIND11_MODULE(pymsgpack, m) {
     .def("GetLevel", &CPlayerInfo::GetLevel)
     .def("GetName", &CPlayerInfo::GetName)
     .def("SetLevel", &CPlayerInfo::SetLevel)
-    .def("SetName", &CPlayerInfo::SetName);
+    .def("SetName", &CPlayerInfo::SetName)
+    .def_readwrite("m_nLevel", &CPlayerInfo::m_nLevel)
+    .def_readwrite("m_strName", &CPlayerInfo::m_strName);
 
     pybind11::class_<CPlayerInfoData>(m, "CPlayerInfoData")
     .def(pybind11::init<>())
