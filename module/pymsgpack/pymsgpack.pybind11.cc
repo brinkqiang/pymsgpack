@@ -14,6 +14,8 @@
 
 #include "player.h"
 
+#include "playerinfo.h"
+
 #include "common/types.h"
 
 #include "common/enum.h"
@@ -56,6 +58,13 @@ PYBIND11_MODULE(pymsgpack, m) {
     .def("SaveDB", &CPlayer::SaveDB)
     .def("GetLevel", &CPlayer::GetLevel)
     .def("GetName", &CPlayer::GetName);
+
+    pybind11::class_<CPlayerInfo>(m, "CPlayerInfo")
+    .def(pybind11::init<>())
+    .def("GetLevel", &CPlayerInfo::GetLevel)
+    .def("GetName", &CPlayerInfo::GetName)
+    .def("SetLevel", &CPlayerInfo::SetLevel)
+    .def("SetName", &CPlayerInfo::SetName);
 
     pybind11::class_<STaskInfo>(m, "STaskInfo")
     .def(pybind11::init<>())
