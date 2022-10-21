@@ -8,6 +8,8 @@
 // export_begin
 uint64_t GNextID();
 // export_end
+#include "msgpack.hpp"
+
 class CPlayer : public CCreature
 {
 public:
@@ -27,9 +29,11 @@ public:
     int GetLevel();
     const std::string& GetName();
 // export_end
-private:
+public:
     int m_nLevel;
     std::string m_strName;
+
+    MSGPACK_DEFINE(m_nLevel, m_strName);
 };
 
 #endif // __PLAYER_H__
