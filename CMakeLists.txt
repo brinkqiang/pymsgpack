@@ -29,6 +29,7 @@ ModuleInclude("dmformat" "thirdparty/dmformat")
 
 ModuleImport("dmpybind11" "thirdparty/dmpybind11")
 ModuleImport("dmtest" "thirdparty/dmtest")
+ModuleImport("dmmsgpack" "thirdparty/dmmsgpack")
 
 PyModuleImport("module" "dmtest;pybind11::module;${PYTHON_LIBRARIES}")
 
