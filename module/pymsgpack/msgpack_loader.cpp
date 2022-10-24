@@ -15,9 +15,13 @@ CMsgPackLoader::~CMsgPackLoader()
 
 bool CMsgPackLoader::load()
 {
-    std::string creature_attr_def_path = DMGetRootPath() + PATH_DELIMITER_STR + "creature_attr_def.py.bin";
+    std::string creature_attr_def_path = DMGetWorkPath() + PATH_DELIMITER_STR + "creature_attr_def.py.bin";
 
     std::string strData = DMLoadFile(creature_attr_def_path);
+    if (strData.empty())
+    {
+        return false;
+    }
 
     msgpack::object_handle oh = msgpack::unpack(strData.data(), strData.size());
 
@@ -29,7 +33,7 @@ bool CMsgPackLoader::save()
 {
     //E:\svn\up1\src\Engine\Binaries\Win64\..\..\..\Server\server\engine\dm\commons\datas\
 
-    std::string creature_attr_def_path = DMGetRootPath() + PATH_DELIMITER_STR + "creature_attr_def.py.bin";
+    std::string creature_attr_def_path = DMGetWorkPath() + PATH_DELIMITER_STR + "creature_attr_def.py.bin";
 
     msgpack::sbuffer sbuf;
     msgpack::pack(sbuf, creature_attr_def_info);

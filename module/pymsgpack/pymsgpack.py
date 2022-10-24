@@ -11,7 +11,8 @@ d = c.to_msgpack()
 assert(b == d)
 
 a = CMsgPackLoader()
-a.creature_attr_def_info.defs
+
+a.load()
 
 b = creature_attr_def()
 
@@ -24,4 +25,8 @@ b.deft = "123"
 b.type = "123"
 b.desc = "123"
 b.desc_bit = "123"
-print(dir(b))
+
+a.creature_attr_def_info.add("123" , b)
+
+a.save()
+a.load()
