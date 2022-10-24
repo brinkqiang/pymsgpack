@@ -1,5 +1,6 @@
 
 #include "playerinfo.h"
+#include "player.h"
 
 CPlayerInfo::CPlayerInfo()
 {
@@ -37,5 +38,5 @@ void CPlayerInfoData::test()
     oInfo.SetLevel(99);
     oInfo.SetName("жпнд");
 
-    mapInfo[oInfo.GetName()] = oInfo;
+    mapInfo[oInfo.GetName() + std::to_string(GNextID())] = oInfo;
 }
