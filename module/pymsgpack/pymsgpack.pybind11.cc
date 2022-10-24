@@ -8,6 +8,8 @@
 #include "pymsgpack.pybind11.h"
 
 
+#include "msgpack_loader.hpp"
+
 #include "object.h"
 
 #include "creature.h"
@@ -30,6 +32,26 @@
 #include <algorithm>
 
 PYBIND11_MODULE(pymsgpack, m) {
+
+    pybind11::class_<creature_attr_def>(m, "creature_attr_def")
+    .def_readwrite("maximun", &creature_attr_def::maximun)
+    .def_readwrite("minimun", &creature_attr_def::minimun)
+    .def_readwrite("use_centimeter", &creature_attr_def::use_centimeter)
+    .def_readwrite("key", &creature_attr_def::key)
+    .def_readwrite("def", &creature_attr_def::def)
+    .def_readwrite("type", &creature_attr_def::type)
+    .def_readwrite("desc", &creature_attr_def::desc)
+    .def_readwrite("desc_bit", &creature_attr_def::desc_bit);
+
+    pybind11::class_<creature_attr_def_data>(m, "creature_attr_def_data")
+    .def("get", &creature_attr_def_data::get)
+    .def("to_msgpack", &creature_attr_def_data::to_msgpack)
+    .def("from_msgpack", &creature_attr_def_data::from_msgpack)
+    .def_readwrite("defs", &creature_attr_def_data::defs);
+
+    pybind11::class_<CMsgPackLoader>(m, "CMsgPackLoader")
+    .def("load", &CMsgPackLoader::load)
+    .def("save", &CMsgPackLoader::save);
 
     pybind11::class_<CObject>(m, "CObject")
     .def(pybind11::init<>())

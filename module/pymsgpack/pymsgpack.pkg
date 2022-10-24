@@ -1,4 +1,5 @@
 
+#include "msgpack_loader.hpp"
 #include "object.h"
 #include "creature.h"
 #include "player.h"
