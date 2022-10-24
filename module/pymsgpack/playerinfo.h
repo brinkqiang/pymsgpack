@@ -30,8 +30,10 @@ public:
     CPlayerInfoData();
     virtual ~CPlayerInfoData();
 
-    std::wstring to_msgpack();
-    void from_msgpack(const std::wstring& data);
+    void test();
+
+    std::vector<char> to_msgpack();
+    void from_msgpack(const std::vector<char>& data);
 public:
     std::map<std::string, CPlayerInfo> mapInfo;
     MSGPACK_DEFINE(mapInfo);

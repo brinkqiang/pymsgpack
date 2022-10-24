@@ -70,6 +70,7 @@ PYBIND11_MODULE(pymsgpack, m) {
 
     pybind11::class_<CPlayerInfoData>(m, "CPlayerInfoData")
     .def(pybind11::init<>())
+    .def("test", &CPlayerInfoData::test)
     .def("to_msgpack", &CPlayerInfoData::to_msgpack)
     .def("from_msgpack", &CPlayerInfoData::from_msgpack)
     .def_readwrite("mapInfo", &CPlayerInfoData::mapInfo);
