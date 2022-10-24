@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-import pymsgpack
+from pymsgpack import *
 
-obj = pymsgpack.CPlayer(1, "zhangsan")
+a = CPlayerInfoData()
+a.test()
+b = a.to_msgpack()
 
-obj.Init()
-print("Name=", obj.GetName(), "Level=", obj.GetLevel(), "HP=", obj.GetHP())
-obj.AddHP(100)
-print("Name=", obj.GetName(), "Level=", obj.GetLevel(), "HP=", obj.GetHP())
+c = CPlayerInfoData()
+c.from_msgpack(b)
+
+assert(b , c)
