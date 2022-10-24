@@ -4,6 +4,7 @@
 
 #include <string>
 #include "msgpack.hpp"
+#include "msgpack_util.h"
 
 class CPlayerInfo
 {
@@ -31,12 +32,10 @@ public:
     virtual ~CPlayerInfoData();
 
     void test();
-
-    std::vector<char> to_msgpack();
-    void from_msgpack(const std::vector<char>& data);
 public:
     std::map<std::string, CPlayerInfo> mapInfo;
     MSGPACK_DEFINE(mapInfo);
+    EXPORT_MSGPACK();
 // export_end
 };
 
