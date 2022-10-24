@@ -42,7 +42,7 @@ public:
         msgpack::pack(sbuf, *this);
         std::vector<char> v;
         v.assign(sbuf.data(), sbuf.data() + sbuf.size());
-        return v;
+        return std::move(v);
     }
 
     inline void from_msgpack(const std::vector<char>& data)
