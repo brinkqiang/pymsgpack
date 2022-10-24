@@ -264,6 +264,7 @@ TEST(pack_perf_sbuffer, pack_perf_sbuffer)
     }
 
     msgpack::sbuffer sbuf;
+    
     msgpack::pack(sbuf, snap);
 
     auto crc = CDMCRC::CalculateDigest(sbuf.data(), sbuf.size());

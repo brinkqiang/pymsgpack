@@ -33,7 +33,7 @@ ModuleImport("dmmsgpack" "thirdparty/dmmsgpack")
 
 PyModuleImport("module" "dmtest;pybind11::module;${PYTHON_LIBRARIES}")
 
-ExeImport("test" "dmtest;pymsgpack;pybind11::module;python${PYBIND11_PYTHON_VERSION}")
+ExeImport("test" "dmtest;pymsgpack;pybind11::module;${PYTHON_LIBRARIES}")
 
 ADD_CUSTOM_COMMAND(
     TARGET pymsgpack
