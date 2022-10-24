@@ -38,11 +38,10 @@ public:
 
     inline std::vector<char> to_msgpack()
     {
-        std::stringstream ss;
-        msgpack::pack(ss, *this);
-        auto str = ss.str();
+        msgpack::sbuffer sbuf;
+        msgpack::pack(sbuf, *this);
         std::vector<char> v;
-        v.assign(str.begin(), str.end());
+        v.assign(sbuf.data(), sbuf.data() + sbuf.size());
         return v;
     }
 
