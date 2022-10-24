@@ -4,7 +4,6 @@
 #include "dmfile.h"
 
 CMsgPackLoader::CMsgPackLoader()
-: creature_attr_def_info(new creature_attr_def_data())
 {
 
 }

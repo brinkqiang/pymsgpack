@@ -9,3 +9,19 @@ c = CPlayerInfoData()
 c.from_msgpack(b)
 d = c.to_msgpack()
 assert(b == d)
+
+a = CMsgPackLoader()
+a.creature_attr_def_info.defs
+
+b = creature_attr_def()
+
+b.maximun = "123"
+b.minimun = "123"
+b.use_centimeter = "123"
+
+b.key = "123"
+b.deft = "123"
+b.type = "123"
+b.desc = "123"
+b.desc_bit = "123"
+print(dir(b))

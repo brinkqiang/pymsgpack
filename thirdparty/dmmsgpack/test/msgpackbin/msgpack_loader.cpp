@@ -24,7 +24,7 @@ bool CMsgPackLoader::Load()
 
     msgpack::object_handle oh =  msgpack::unpack(strData.data(), strData.size());
 
-    oh.get().convert(creature_attr_def_info->creature_attr_def);
+    oh.get().convert(creature_attr_def_info);
 
     return true;
 }
