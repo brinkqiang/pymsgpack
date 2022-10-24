@@ -7,5 +7,5 @@ b = a.to_msgpack()
 
 c = CPlayerInfoData()
 c.from_msgpack(b)
-
-assert(b , c)
+d = c.to_msgpack()
+assert(b == d)
