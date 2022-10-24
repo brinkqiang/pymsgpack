@@ -65,16 +65,17 @@ struct creature_attr_def_data
 class CMsgPackLoader
 {
 public:
+// export_begin
     CMsgPackLoader();
     virtual ~CMsgPackLoader();
 
-// export_begin
     bool load();
     bool save();
 // export_end
 
-private:
-
+public:
+// export_begin
     std::shared_ptr<creature_attr_def_data> creature_attr_def_info;
+// export_end
 
 };
