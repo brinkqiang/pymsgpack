@@ -7,11 +7,13 @@
 #include <variant>
 #include "msgpack_fix32.hpp"
 
+typedef std::variant<std::string, bool, int64_t, uint64_t, double, Fix32> variant_type;
+
 struct creature_attr_def
 {
 // export_begin
     creature_attr_def(){}
-   virtual ~creature_attr_def(){}
+    virtual ~creature_attr_def(){}
     std::string maximun;
     std::string minimun;
     std::string use_centimeter;
@@ -37,6 +39,7 @@ struct creature_attr_def_data
 // export_begin
    creature_attr_def_data(){}
    virtual ~creature_attr_def_data(){}
+
     void add(const std::string& key, creature_attr_def& def)
     {
         defs[key] = def;
