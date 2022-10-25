@@ -19,12 +19,12 @@ struct creature_attr_def
     std::string use_centimeter;
 
     std::string key;
-    std::string deft;
+    std::string defs;
     std::string type;
     std::string desc;
     std::string desc_bit;
 // export_end
-    MSGPACK_DEFINE(maximun, minimun, use_centimeter, key, deft, type, desc, desc_bit);
+    MSGPACK_DEFINE(maximun, minimun, use_centimeter, key, defs, type, desc, desc_bit);
 };
 
 typedef std::map<std::string, creature_attr_def> map_creature_attr_def;
@@ -32,23 +32,23 @@ typedef std::map<std::string, creature_attr_def> map_creature_attr_def;
 struct creature_attr_def_data
 {
 // export_begin
-    map_creature_attr_def defs;
+    map_creature_attr_def datas;
 // export_end
-    MSGPACK_DEFINE(defs);
+    MSGPACK_DEFINE(datas);
 
 // export_begin
    creature_attr_def_data(){}
    virtual ~creature_attr_def_data(){}
 
-    void add(const std::string& key, creature_attr_def& def)
+    void add(const std::string& key, creature_attr_def& value)
     {
-        defs[key] = def;
+        datas[key] = value;
     }
 
     creature_attr_def* get(const std::string& key)
     {
-        auto it = defs.find(key);
-        if (it == defs.end())
+        auto it = datas.find(key);
+        if (it == datas.end())
         {
             return nullptr;
         }

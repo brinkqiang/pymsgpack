@@ -39,7 +39,7 @@ PYBIND11_MODULE(pymsgpack, m) {
     .def_readwrite("minimun", &creature_attr_def::minimun)
     .def_readwrite("use_centimeter", &creature_attr_def::use_centimeter)
     .def_readwrite("key", &creature_attr_def::key)
-    .def_readwrite("deft", &creature_attr_def::deft)
+    .def_readwrite("defs", &creature_attr_def::defs)
     .def_readwrite("type", &creature_attr_def::type)
     .def_readwrite("desc", &creature_attr_def::desc)
     .def_readwrite("desc_bit", &creature_attr_def::desc_bit);
@@ -50,7 +50,7 @@ PYBIND11_MODULE(pymsgpack, m) {
     .def("get", &creature_attr_def_data::get)
     .def("to_msgpack", &creature_attr_def_data::to_msgpack)
     .def("from_msgpack", &creature_attr_def_data::from_msgpack)
-    .def_readwrite("defs", &creature_attr_def_data::defs);
+    .def_readwrite("datas", &creature_attr_def_data::datas);
 
     pybind11::class_<CMsgPackLoader>(m, "CMsgPackLoader")
     .def(pybind11::init<>())
