@@ -57,18 +57,18 @@ struct creature_attr_def_data
     }
 
 
-    inline std::vector<char> to_msgpack()
+    inline std::vector<uint8_t> to_msgpack()
     {
         msgpack::sbuffer sbuf;
         msgpack::pack(sbuf, *this);
-        std::vector<char> v;
+        std::vector<uint8_t> v;
         v.assign(sbuf.data(), sbuf.data() + sbuf.size());
         return std::move(v);
     }
 
-    inline void from_msgpack(const std::vector<char>& data)
+    inline void from_msgpack(const std::vector<uint8_t>& data)
     {
-        auto oh = msgpack::unpack(data.data(), data.size());
+        auto oh = msgpack::unpack((char*)data.data(), data.size());
         oh.get().convert(*this);
     }
 // export_end
