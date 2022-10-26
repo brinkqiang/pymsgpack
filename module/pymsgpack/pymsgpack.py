@@ -39,12 +39,6 @@ print("get 1234",e)
 
 c = a.creature_attr_def_info.to_msgpack()
 
-def list_to_hex_string(list_data):
-    list_str = ''
-    for x in list_data:
-        list_str += x.encode('hex')
-    return list_str
-
-print(list_to_hex_string(c))
+print(len(c))
 a.save()
 a.load()

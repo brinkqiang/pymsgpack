@@ -14,6 +14,7 @@ struct creature_attr_def
 // export_begin
     creature_attr_def(){}
     virtual ~creature_attr_def(){}
+
     std::string maximun;
     std::string minimun;
     std::string use_centimeter;
