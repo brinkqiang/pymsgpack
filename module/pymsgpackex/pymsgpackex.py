@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pymsgpack import *
+from pymsgpackex import *
 
 #a = CPlayerInfoData()
 #a.test()
