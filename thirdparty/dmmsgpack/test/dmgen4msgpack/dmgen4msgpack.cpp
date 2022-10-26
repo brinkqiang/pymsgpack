@@ -7,15 +7,19 @@
 //    http://www.boost.org/LICENSE_1_0.txt)
 //
 #include "gtest.h"
-#include <msgpack.hpp>
+
 #include <string>
 #include <iostream>
 #include <sstream>
 #include <unordered_map>
 #include <array>
+#include <memory>
+
+#include <msgpack.hpp>
+
 #include "dmcrc.h"
 #include "dmfile.h"
-#include <memory>
+#include "msgpack_fix32.hpp"
 
 class Event_snapshot
 {
@@ -125,27 +129,6 @@ public:
     Lprojectile LProjectile;
 
     MSGPACK_DEFINE(LCreature);
-};
-
-class Fix32 {
-public:
-    uint64_t value;
-    MSGPACK_DEFINE(value);
-};
-
-class Fix32Vec2 {
-public:
-    Fix32 x;
-    Fix32 y;
-    MSGPACK_DEFINE(x, y);
-};
-
-class Fix32Vec3 {
-public:
-    Fix32 x;
-    Fix32 y;
-    Fix32 z;
-    MSGPACK_DEFINE(x, y, z);
 };
 
 union UN_VEC3
@@ -301,4 +284,3 @@ TEST(unpack_perf, unpack_perf)
     oh.get().convert(snap2);
     std::cout << "unpack_perf: " << oh.get() << std::endl;
 }
-
