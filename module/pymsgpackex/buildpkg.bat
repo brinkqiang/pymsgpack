@@ -1,2 +1,2 @@
 
-dmgen4pybind --PKG=pymsgpack.pkg
+dmgen4pybind --PKG=pymsgpackex.pkg

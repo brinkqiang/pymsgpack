@@ -3,10 +3,10 @@
 **            Please do not change it directly.                    **
 **                   Auther: brinkqiang                            **
 ********************************************************************/
-// source: pymsgpack.pkg
+// source: pymsgpackex.pkg
 
-#ifndef __PYMSGPACK_PYBIND11_H__
-#define __PYMSGPACK_PYBIND11_H__
+#ifndef __PYMSGPACKEX_PYBIND11_H__
+#define __PYMSGPACKEX_PYBIND11_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,4 +16,4 @@ extern "C" {
 }
 #endif
 
-#endif  // __PYMSGPACK_PYBIND11_H__
+#endif  // __PYMSGPACKEX_PYBIND11_H__

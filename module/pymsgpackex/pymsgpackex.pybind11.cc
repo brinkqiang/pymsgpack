@@ -3,9 +3,9 @@
 **            Please do not change it directly.                    **
 **                   Auther: brinkqiang                            **
 ********************************************************************/
-// source: pymsgpack.pkg
+// source: pymsgpackex.pkg
 
-#include "pymsgpack.pybind11.h"
+#include "pymsgpackex.pybind11.h"
 
 
 #include "msgpack_loader.hpp"
@@ -15,7 +15,7 @@
 #include <pybind11/stl.h>
 #include <algorithm>
 
-PYBIND11_MODULE(pymsgpack, m) {
+PYBIND11_MODULE(pymsgpackex, m) {
 
     pybind11::class_<creature_attr_def>(m, "creature_attr_def")
     .def(pybind11::init<>())
