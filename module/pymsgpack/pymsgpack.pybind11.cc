@@ -46,60 +46,60 @@ PYBIND11_MODULE(pymsgpack, m) {
 
     pybind11::class_<creature_attr_def_data>(m, "creature_attr_def_data")
     .def(pybind11::init<>())
-    .def("add", &creature_attr_def_data::add)
+    .def("add", &creature_attr_def_data::add, pybind11::return_value_policy::automatic_reference)
     .def("get", &creature_attr_def_data::get, pybind11::return_value_policy::automatic_reference)
-    .def("to_msgpack", &creature_attr_def_data::to_msgpack)
-    .def("from_msgpack", &creature_attr_def_data::from_msgpack)
+    .def("to_msgpack", &creature_attr_def_data::to_msgpack, pybind11::return_value_policy::automatic_reference)
+    .def("from_msgpack", &creature_attr_def_data::from_msgpack, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("datas", &creature_attr_def_data::datas);
 
     pybind11::class_<CMsgPackLoader>(m, "CMsgPackLoader")
     .def(pybind11::init<>())
-    .def("load", &CMsgPackLoader::load)
-    .def("save", &CMsgPackLoader::save)
+    .def("load", &CMsgPackLoader::load, pybind11::return_value_policy::automatic_reference)
+    .def("save", &CMsgPackLoader::save, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("creature_attr_def_info", &CMsgPackLoader::creature_attr_def_info);
 
     pybind11::class_<CObject>(m, "CObject")
     .def(pybind11::init<>())
-    .def("GetObjID", &CObject::GetObjID)
-    .def("SetObjID", &CObject::SetObjID);
+    .def("GetObjID", &CObject::GetObjID, pybind11::return_value_policy::automatic_reference)
+    .def("SetObjID", &CObject::SetObjID, pybind11::return_value_policy::automatic_reference);
 
     pybind11::class_<CCreature, CObject>(m, "CCreature")
     .def(pybind11::init<>())
-    .def("GetHP", &CCreature::GetHP)
-    .def("SetHP", &CCreature::SetHP)
-    .def("AddHP", &CCreature::AddHP)
-    .def("GetMP", &CCreature::GetMP)
-    .def("SetMP", &CCreature::SetMP)
-    .def("AddMP", &CCreature::AddMP);
+    .def("GetHP", &CCreature::GetHP, pybind11::return_value_policy::automatic_reference)
+    .def("SetHP", &CCreature::SetHP, pybind11::return_value_policy::automatic_reference)
+    .def("AddHP", &CCreature::AddHP, pybind11::return_value_policy::automatic_reference)
+    .def("GetMP", &CCreature::GetMP, pybind11::return_value_policy::automatic_reference)
+    .def("SetMP", &CCreature::SetMP, pybind11::return_value_policy::automatic_reference)
+    .def("AddMP", &CCreature::AddMP, pybind11::return_value_policy::automatic_reference);
 
-    m.def("GNextID", &GNextID);
+    m.def("GNextID", &GNextID, pybind11::return_value_policy::automatic_reference);
     pybind11::class_<CPlayer, CCreature, CObject>(m, "CPlayer")
     .def(pybind11::init<>())
     .def(pybind11::init<int,const std::string&>())
     .def(pybind11::init<const std::string&>())
-    .def("Init", &CPlayer::Init)
-    .def("OnChange", &CPlayer::OnChange)
-    .def("NotChange", &CPlayer::NotChange)
-    .def("SystemChange", &CPlayer::SystemChange)
-    .def("LoadFromDB", &CPlayer::LoadFromDB)
-    .def("SaveDB", &CPlayer::SaveDB)
-    .def("GetLevel", &CPlayer::GetLevel)
-    .def("GetName", &CPlayer::GetName);
+    .def("Init", &CPlayer::Init, pybind11::return_value_policy::automatic_reference)
+    .def("OnChange", &CPlayer::OnChange, pybind11::return_value_policy::automatic_reference)
+    .def("NotChange", &CPlayer::NotChange, pybind11::return_value_policy::automatic_reference)
+    .def("SystemChange", &CPlayer::SystemChange, pybind11::return_value_policy::automatic_reference)
+    .def("LoadFromDB", &CPlayer::LoadFromDB, pybind11::return_value_policy::automatic_reference)
+    .def("SaveDB", &CPlayer::SaveDB, pybind11::return_value_policy::automatic_reference)
+    .def("GetLevel", &CPlayer::GetLevel, pybind11::return_value_policy::automatic_reference)
+    .def("GetName", &CPlayer::GetName, pybind11::return_value_policy::automatic_reference);
 
     pybind11::class_<CPlayerInfo>(m, "CPlayerInfo")
     .def(pybind11::init<>())
-    .def("GetLevel", &CPlayerInfo::GetLevel)
-    .def("GetName", &CPlayerInfo::GetName)
-    .def("SetLevel", &CPlayerInfo::SetLevel)
-    .def("SetName", &CPlayerInfo::SetName)
+    .def("GetLevel", &CPlayerInfo::GetLevel, pybind11::return_value_policy::automatic_reference)
+    .def("GetName", &CPlayerInfo::GetName, pybind11::return_value_policy::automatic_reference)
+    .def("SetLevel", &CPlayerInfo::SetLevel, pybind11::return_value_policy::automatic_reference)
+    .def("SetName", &CPlayerInfo::SetName, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("m_nLevel", &CPlayerInfo::m_nLevel)
     .def_readwrite("m_strName", &CPlayerInfo::m_strName);
 
     pybind11::class_<CPlayerInfoData>(m, "CPlayerInfoData")
     .def(pybind11::init<>())
-    .def("test", &CPlayerInfoData::test)
-    .def("to_msgpack", &CPlayerInfoData::to_msgpack)
-    .def("from_msgpack", &CPlayerInfoData::from_msgpack)
+    .def("test", &CPlayerInfoData::test, pybind11::return_value_policy::automatic_reference)
+    .def("to_msgpack", &CPlayerInfoData::to_msgpack, pybind11::return_value_policy::automatic_reference)
+    .def("from_msgpack", &CPlayerInfoData::from_msgpack, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("mapInfo", &CPlayerInfoData::mapInfo);
 
     pybind11::class_<STaskInfo>(m, "STaskInfo")
