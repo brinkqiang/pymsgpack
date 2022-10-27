@@ -30,16 +30,16 @@ PYBIND11_MODULE(pymsgpackex, m) {
 
     pybind11::class_<creature_attr_def_data>(m, "creature_attr_def_data")
     .def(pybind11::init<>())
-    .def("add", &creature_attr_def_data::add)
-    .def("get", &creature_attr_def_data::get)
-    .def("to_msgpack", &creature_attr_def_data::to_msgpack)
-    .def("from_msgpack", &creature_attr_def_data::from_msgpack)
+    .def("add", &creature_attr_def_data::add, pybind11::return_value_policy::automatic_reference)
+    .def("get", &creature_attr_def_data::get, pybind11::return_value_policy::automatic_reference)
+    .def("to_msgpack", &creature_attr_def_data::to_msgpack, pybind11::return_value_policy::automatic_reference)
+    .def("from_msgpack", &creature_attr_def_data::from_msgpack, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("datas", &creature_attr_def_data::datas);
 
     pybind11::class_<CMsgPackLoader>(m, "CMsgPackLoader")
     .def(pybind11::init<>())
-    .def("load", &CMsgPackLoader::load)
-    .def("save", &CMsgPackLoader::save)
+    .def("load", &CMsgPackLoader::load, pybind11::return_value_policy::automatic_reference)
+    .def("save", &CMsgPackLoader::save, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("creature_attr_def_info", &CMsgPackLoader::creature_attr_def_info);
 
 }

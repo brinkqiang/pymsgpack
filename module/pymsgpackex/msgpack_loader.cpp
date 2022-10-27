@@ -24,8 +24,16 @@ bool CMsgPackLoader::load()
     }
 
     msgpack::object_handle oh = msgpack::unpack(strData.data(), strData.size());
-
-    oh.get().convert(creature_attr_def_info);
+    try
+    {
+        oh.get().convert(creature_attr_def_info);
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "msgpack load error: " << e.what() << std::endl;
+        return false;
+    }
+    
     return true;
 }
 
