@@ -46,8 +46,8 @@ Fix32 msgpack_str2Fix32(const std::string& strData)
 
     std::string strRet = strData.data() + len;
     strRet.pop_back();
-
-    return Fix32(stoi(strRet));
+    fix32.value = stoll(strRet);
+    return fix32;
 }
 
 //Fix32Vec2 msgpack_str2Fix32Vec2(const std::string& strData)
