@@ -125,10 +125,10 @@ public:
 class Entities_snapshot
 {
 public:
-    LCreature LCreature;
-    Lprojectile LProjectile;
+    LCreature lcreature;
+    Lprojectile lprojectile;
 
-    MSGPACK_DEFINE(LCreature);
+    MSGPACK_DEFINE(lcreature, lprojectile);
 };
 
 union UN_VEC3
@@ -163,8 +163,8 @@ TEST(msgpack_write, msgpack_write)
     snap->entities_index.push_back(12);
     snap->entities_index.push_back(123);
     snap->random_state = "Ëæ»ú×´Ì¬Êı¾İ";
-    snap->entities_snapshot.LCreature._ability_point = 222;
-    snap->entities_snapshot.LCreature._auto_recover_timer = 333;
+    snap->entities_snapshot.lcreature._ability_point = 222;
+    snap->entities_snapshot.lcreature._auto_recover_timer = 333;
 
     snap->vec3_data.x.value = 1;
     snap->vec3_data.y.value = 2;
@@ -202,8 +202,8 @@ TEST(pack_perf, pack_perf)
     snap.entities_index.push_back(12);
     snap.entities_index.push_back(123);
     snap.random_state = "abcd";
-    snap.entities_snapshot.LCreature._ability_point = 222;
-    snap.entities_snapshot.LCreature._auto_recover_timer = 333;
+    snap.entities_snapshot.lcreature._ability_point = 222;
+    snap.entities_snapshot.lcreature._auto_recover_timer = 333;
     for (auto& it : snap.status_count)
     {
         it = 3;
@@ -233,8 +233,8 @@ TEST(pack_perf_sbuffer, pack_perf_sbuffer)
     snap.entities_index.push_back(12);
     snap.entities_index.push_back(123);
     snap.random_state = "abcd";
-    snap.entities_snapshot.LCreature._ability_point = 222;
-    snap.entities_snapshot.LCreature._auto_recover_timer = 333;
+    snap.entities_snapshot.lcreature._ability_point = 222;
+    snap.entities_snapshot.lcreature._auto_recover_timer = 333;
     for (auto& it : snap.status_count)
     {
         it = 3;
@@ -263,8 +263,8 @@ TEST(unpack_perf, unpack_perf)
     snap.entities_index.push_back(12);
     snap.entities_index.push_back(123);
     snap.random_state = "abcd";
-    snap.entities_snapshot.LCreature._ability_point = 222;
-    snap.entities_snapshot.LCreature._auto_recover_timer = 333;
+    snap.entities_snapshot.lcreature._ability_point = 222;
+    snap.entities_snapshot.lcreature._auto_recover_timer = 333;
     for (auto& it : snap.status_count)
     {
         it = 3;
