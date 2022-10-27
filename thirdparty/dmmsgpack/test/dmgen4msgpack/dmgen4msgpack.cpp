@@ -120,6 +120,7 @@ public:
 class Lprojectile
 {
 public:
+    MSGPACK_DEFINE();
 };
 
 class Entities_snapshot
