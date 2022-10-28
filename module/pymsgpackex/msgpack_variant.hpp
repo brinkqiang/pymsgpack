@@ -10,11 +10,12 @@ typedef std::variant<std::string, int64_t, double, bool, Fix32> variant_type;
 class CVariant
 {
 public:
+// export_begin
     CVariant() {}
     ~CVariant() {}
 
     variant_type value;
-
+// export_end
     template<typename T>
     T getValue()
     {
@@ -26,6 +27,7 @@ public:
     {
         value = t;
     }
+
 };
 
 template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };

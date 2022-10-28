@@ -8,6 +8,10 @@
 #include "pymsgpackex.pybind11.h"
 
 
+#include "msgpack_fix32.hpp"
+
+#include "msgpack_variant.hpp"
+
 #include "msgpack_loader.hpp"
 
 
@@ -16,6 +20,15 @@
 #include <algorithm>
 
 PYBIND11_MODULE(pymsgpackex, m) {
+
+    pybind11::class_<Fix32>(m, "Fix32")
+    .def(pybind11::init<>())
+    .def("to_string", &Fix32::to_string, pybind11::return_value_policy::automatic_reference)
+    .def_readwrite("value", &Fix32::value);
+
+    pybind11::class_<Fix32Vec2>(m, "Fix32Vec2");
+
+    pybind11::class_<Fix32Vec3>(m, "Fix32Vec3");
 
     pybind11::class_<creature_attr_def>(m, "creature_attr_def")
     .def(pybind11::init<>())

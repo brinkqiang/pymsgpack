@@ -1,44 +1,45 @@
 # -*- coding: utf-8 -*-
 from pymsgpackex import *
 
-#a = CPlayerInfoData()
-#a.test()
-#b = a.to_msgpack()
-#
-#c = CPlayerInfoData()
-#c.from_msgpack(b)
-#d = c.to_msgpack()
-#assert(b == d)
-
-# -*- coding: utf-8 -*-
 a = CMsgPackLoader()
 
 a.load()
 
 b = creature_attr_def()
 
-b.maximun = "123"
-b.minimun = "123"
-b.use_centimeter = "123"
+fix = Fix32()
+fix.value = 999
+b.maximun.setValue(fix)
+fix.value = 1
+b.minimun.setValue(fix)
 
-b.key = "123"
-b.defs = "123"
-b.type = "123"
-b.desc = "123"
-b.desc_bit = "123"
+b.use_centimeter.setValue(True)
 
-a.creature_attr_def_info.add("123" , b)
+b.key.setValue("tom")
+b.defs.setValue("default")
+b.type.setValue("fix32")
+b.desc.setValue(1.23456789)
+b.desc_bit.setValue(888)
 
-d = a.creature_attr_def_info.get("123")
-print("get 123",d)
-d.defs = "1234"
-print("get 123 defs:",d.defs)
+a.creature_attr_def_info.add("tom" , b)
 
-e = a.creature_attr_def_info.get("1234")
-print("get 1234",e)
+d = a.creature_attr_def_info.get("tom")
+print("get tom",d)
+d.defs.setValue("default_test")
+print("get tom defs:",d.defs.getValue())
+
+e = a.creature_attr_def_info.get("jack")
+print("get jack",e)
 
 c = a.creature_attr_def_info.to_msgpack()
 
+#def list_to_hex_string(list_data):
+#    list_str = ''
+#    for x in list_data:
+#        list_str += x.encode('hex')
+#    return list_str
+
+#print(list_to_hex_string(c))
 print(len(c))
 a.save()
 a.load()

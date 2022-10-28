@@ -6,13 +6,17 @@
 
 class Fix32 {
 public:
+// export_begin
+    explicit Fix32() : value(0) {}
     double value;
+// export_end
     MSGPACK_DEFINE(value);
-
+// export_begin
     std::string to_string()
     {
         return "Fix32(" + std::to_string(value) + ")";
     }
+// export_end
 };
 
 class Fix32Vec2 {
