@@ -23,17 +23,19 @@ bool CMsgPackLoader::load()
         return false;
     }
 
+    creature_attr_def_info.data.clear();
+
     msgpack::object_handle oh = msgpack::unpack(strData.data(), strData.size());
-    try
-    {
+    //try
+    //{
         oh.get().convert(creature_attr_def_info);
-    }
-    catch (std::exception& e)
-    {
-        std::cerr << "msgpack load error: " << e.what() << std::endl;
-        return false;
-    }
-    
+    //}
+    //catch (std::exception& e)
+    //{
+    //    std::cerr << "CMsgPackLoader::load error: " <<  e.what() << std::endl;
+    //    return false;
+    //}
+
     return true;
 }
 
@@ -44,7 +46,16 @@ bool CMsgPackLoader::save()
     std::string creature_attr_def_path = DMGetWorkPath() + PATH_DELIMITER_STR + "creature_attr_def.py.bin";
 
     msgpack::sbuffer sbuf;
-    msgpack::pack(sbuf, creature_attr_def_info);
+    try
+    {
+        msgpack::pack(sbuf, creature_attr_def_info);
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "CMsgPackLoader::save error: " << e.what() << std::endl;
+        return false;
+    }
+
     std::string strData = std::string(sbuf.data(), sbuf.size());
     return DMWriteFile(creature_attr_def_path, strData);
 }

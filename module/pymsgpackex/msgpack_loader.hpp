@@ -6,49 +6,51 @@
 #include <memory>
 #include <variant>
 #include "msgpack_fix32.hpp"
+#include "msgpack_variant.hpp"
 
-typedef std::variant<std::string, bool, int64_t, uint64_t, double, Fix32> variant_type;
+typedef std::vector<char> vec_bin;
 
 struct creature_attr_def
 {
 // export_begin
     creature_attr_def(){}
     virtual ~creature_attr_def(){}
-    std::string maximun;
-    std::string minimun;
-    std::string use_centimeter;
+    CVariant maximun;
+    CVariant minimun;
+    CVariant use_centimeter;
+    CVariant key;
+    CVariant defs;
+    CVariant type;
+    CVariant desc;
+    CVariant desc_bit;
 
-    std::string key;
-    std::string defs;
-    std::string type;
-    std::string desc;
-    std::string desc_bit;
 // export_end
-    MSGPACK_DEFINE(maximun, minimun, use_centimeter, key, defs, type, desc, desc_bit);
+    MSGPACK_DEFINE_MAP(maximun, minimun, use_centimeter, key, defs, type, desc, desc_bit);
 };
 
+//typedef std::map<std::string, creature_attr_def> map_creature_attr_def;
 typedef std::map<std::string, creature_attr_def> map_creature_attr_def;
 
 struct creature_attr_def_data
 {
 // export_begin
-    map_creature_attr_def datas;
+    map_creature_attr_def data;
 // export_end
-    MSGPACK_DEFINE(datas);
+    MSGPACK_DEFINE_MAP(data);
 
 // export_begin
    creature_attr_def_data(){}
    virtual ~creature_attr_def_data(){}
 
-    void add(const std::string& key, creature_attr_def& value)
+    void add(const std::string& key, creature_attr_def& v)
     {
-        datas[key] = value;
+        data[key] = v;
     }
 
-    creature_attr_def* get(const std::string& key)
+    const creature_attr_def* get(const std::string& key) 
     {
-        auto it = datas.find(key);
-        if (it == datas.end())
+        auto it = data.find(key);
+        if (it == data.end())
         {
             return nullptr;
         }
@@ -56,19 +58,18 @@ struct creature_attr_def_data
         return &it->second;
     }
 
-
-    inline std::vector<uint8_t> to_msgpack()
+    inline vec_bin to_msgpack()
     {
         msgpack::sbuffer sbuf;
         msgpack::pack(sbuf, *this);
-        std::vector<uint8_t> v;
+        vec_bin v;
         v.assign(sbuf.data(), sbuf.data() + sbuf.size());
         return std::move(v);
     }
 
-    inline void from_msgpack(const std::vector<uint8_t>& data)
+    inline void from_msgpack(const vec_bin& data)
     {
-        auto oh = msgpack::unpack((char*)data.data(), data.size());
+        auto oh = msgpack::unpack(data.data(), data.size());
         oh.get().convert(*this);
     }
 // export_end

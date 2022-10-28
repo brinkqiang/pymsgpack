@@ -6,8 +6,13 @@
 
 class Fix32 {
 public:
-    uint64_t value;
+    double value;
     MSGPACK_DEFINE(value);
+
+    std::string to_string()
+    {
+        return "Fix32(" + std::to_string(value) + ")";
+    }
 };
 
 class Fix32Vec2 {
