@@ -45,6 +45,10 @@ macro(ModuleSetOnlyPath)
   ENDIF(WIN32)
 endmacro(ModuleSetOnlyPath)
 
+macro(ModuleSetUseFolders)
+    set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+endmacro()
+
 macro(ModuleSetCompileOptions)
   CMAKE_POLICY(SET CMP0022 NEW)
   INCLUDE(CheckCXXCompilerFlag)
