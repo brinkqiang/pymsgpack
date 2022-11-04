@@ -13,6 +13,8 @@ endmacro()
 macro(PyModuleImport ModulePath DependsLib)
     MESSAGE(STATUS "PyModuleImport ${ModulePath} ${DependsLib}")
 
+    source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath})
+
     IF (IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath})
         SUBDIRLIST(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath})
         FOREACH(subdir ${SUBDIRS})
@@ -27,7 +29,7 @@ macro(PyModuleImport ModulePath DependsLib)
 
             LIST(FILTER BIN_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/tpl/*")
 
-            MESSAGE(STATUS "BIN_SOURCES ${LIB_SOURCES}")
+            MESSAGE(STATUS "BIN_SOURCES ${BIN_SOURCES}")
 
             ADD_LIBRARY(${subdir} SHARED ${BIN_SOURCES})
             TARGET_LINK_LIBRARIES(${subdir} ${DependsLib})
