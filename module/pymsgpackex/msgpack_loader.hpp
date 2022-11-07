@@ -7,6 +7,7 @@
 #include <variant>
 #include "msgpack_fix32.hpp"
 #include "msgpack_variant.hpp"
+#include "msgpack_help.hpp"
 
 typedef std::vector<char> vec_bin;
 

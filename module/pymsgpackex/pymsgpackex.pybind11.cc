@@ -18,7 +18,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <algorithm>
-
+#include "msgpack_help.hpp"
 PYBIND11_MODULE(pymsgpackex, m) {
 
     pybind11::class_<Fix32>(m, "Fix32")
@@ -29,6 +29,10 @@ PYBIND11_MODULE(pymsgpackex, m) {
     pybind11::class_<Fix32Vec2>(m, "Fix32Vec2");
 
     pybind11::class_<Fix32Vec3>(m, "Fix32Vec3");
+
+    pybind11::class_<CVariant>(m, "CVariant")
+    .def(pybind11::init<>())
+    .def_readwrite("value", &CVariant::value);
 
     pybind11::class_<creature_attr_def>(m, "creature_attr_def")
     .def(pybind11::init<>())
