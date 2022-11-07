@@ -8,6 +8,7 @@ INCLUDE(cmake/ModuleCompileOptions.cmake)
 INCLUDE(cmake/PythonModuleImport.cmake)
 
 ModuleSetCompileOptions()
+ModuleSetUseFolders()
 
 SET(DMCONFIG_VERSION_MAJOR "1")
 SET(DMCONFIG_VERSION_MINOR "0")
