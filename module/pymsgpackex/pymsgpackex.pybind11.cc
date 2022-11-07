@@ -18,7 +18,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <algorithm>
-#include "msgpack_help.hpp"
+
 PYBIND11_MODULE(pymsgpackex, m) {
 
     pybind11::class_<Fix32>(m, "Fix32")

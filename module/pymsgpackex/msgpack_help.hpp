@@ -16,34 +16,34 @@ namespace msgpack {
 
             // Place class template specialization here
             template<>
-            struct convert<CVariant> {
-                msgpack::object const& operator()(msgpack::object const& o, CVariant& v) const {
+            struct convert<variant_type> {
+                msgpack::object const& operator()(msgpack::object const& o, variant_type& v) const {
                     switch (o.type)
                     {
                     case MSGPACK_OBJECT_POSITIVE_INTEGER:
                     {
-                        v.value = o.as<int64_t>();
+                        v = o.as<int64_t>();
                     }
                     break;
                     case MSGPACK_OBJECT_FLOAT:
                     case MSGPACK_OBJECT_FLOAT32:
                     {
-                        v.value = o.as<double>();
+                        v = o.as<double>();
                     }
                     break;
                     case MSGPACK_OBJECT_STR:
                     {
-                        v.value = o.as<std::string>();
+                        v = o.as<std::string>();
                     }
                     break;
                     case MSGPACK_OBJECT_BOOLEAN:
                     {
-                        v.value = o.as<bool>();
+                        v = o.as<bool>();
                     }
                     break;
                     case MSGPACK_OBJECT_BIN:
                     {
-                        v.value = o.as<std::string>();
+                        v = o.as<std::string>();
                     }
                     break;
                     case MSGPACK_OBJECT_EXT:
@@ -51,7 +51,7 @@ namespace msgpack {
                         msgpack::type::ext_ref ext(o.via.ext.ptr, o.via.ext.size + 1);
                         if (ext.type() == msgpack_ext_type_fix32)
                         {
-                            v.value = msgpack_str2Fix32(ext.str());
+                            v = msgpack_str2Fix32(ext.str());
                         }
                     }
                     break;
@@ -63,9 +63,9 @@ namespace msgpack {
             };
 
             template<>
-            struct pack<CVariant> {
+            struct pack<variant_type> {
                 template <typename Stream>
-                packer<Stream>& operator()(msgpack::packer<Stream>& o, CVariant const& v) const {
+                packer<Stream>& operator()(msgpack::packer<Stream>& o, variant_type const& v) const {
                     // packing member variables as an array.
                     std::visit(overloaded{
                           [&](const std::string& data)
@@ -90,14 +90,14 @@ namespace msgpack {
                             msgpack::type::ext ext(msgpack_ext_type_fix32, s.data(), s.size());
                             o.pack(ext);
                           }
-                        }, v.value);
+                        }, v);
                     return o;
                 }
             };
 
             template <>
-            struct object_with_zone<CVariant> {
-                void operator()(msgpack::object::with_zone& o, CVariant const& v) const
+            struct object_with_zone<variant_type> {
+                void operator()(msgpack::object::with_zone& o, variant_type const& v) const
                 {
                 }
             };

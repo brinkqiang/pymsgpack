@@ -16,14 +16,14 @@ struct creature_attr_def
 // export_begin
     creature_attr_def(){}
     virtual ~creature_attr_def(){}
-    CVariant maximun;
-    CVariant minimun;
-    CVariant use_centimeter;
-    CVariant key;
-    CVariant defs;
-    CVariant type;
-    CVariant desc;
-    CVariant desc_bit;
+    variant_type maximun;
+    variant_type minimun;
+    variant_type use_centimeter;
+    variant_type key;
+    variant_type defs;
+    variant_type type;
+    variant_type desc;
+    variant_type desc_bit;
 
 // export_end
     MSGPACK_DEFINE_MAP(maximun, minimun, use_centimeter, key, defs, type, desc, desc_bit);
