@@ -9,8 +9,6 @@
 #include <variant>
 
 #include "dmsingleton.h"
-#include "msgpack_variant.hpp"
-
 #include "data.msgpack.hpp"
 
 /* in python
