@@ -1,80 +1,32 @@
 
 #pragma once
 
+#ifndef __MSGPACK_LOADER_H_INCLUDE__
+#define __MSGPACK_LOADER_H_INCLUDE__
+
 #include <vector>
-#include "msgpack.hpp"
 #include <memory>
 #include <variant>
-#include "msgpack_fix32.hpp"
+
+#include "dmsingleton.h"
 #include "msgpack_variant.hpp"
-#include "msgpack_help.hpp"
 
-typedef std::vector<char> vec_bin;
+#include "data.msgpack.hpp"
 
-struct creature_attr_def
-{
-// export_begin
-    creature_attr_def(){}
-    virtual ~creature_attr_def(){}
-    variant_type maximun;
-    variant_type minimun;
-    variant_type use_centimeter;
-    variant_type key;
-    variant_type defs;
-    variant_type type;
-    variant_type desc;
-    variant_type desc_bit;
+/* in python
 
-// export_end
-    MSGPACK_DEFINE_MAP(maximun, minimun, use_centimeter, key, defs, type, desc, desc_bit);
-};
+import framecore
+node = framecore.GetMsgPackLoader().creature_attr_def_info.get("bar_name")
+print(node.key.getValue())
+obj = creature_attr_def()
+obj.key.setValue("12345")
+obj.type.setValue("67890")
+GetMsgPackLoader().creature_attr_def_info.add("12345", obj)
+obj2 = GetMsgPackLoader().creature_attr_def_info.get("12345")
+print(obj2.key.getValue())
+print(obj2.type.getValue())
 
-//typedef std::map<std::string, creature_attr_def> map_creature_attr_def;
-typedef std::map<std::string, creature_attr_def> map_creature_attr_def;
-
-struct creature_attr_def_data
-{
-// export_begin
-    map_creature_attr_def data;
-// export_end
-    MSGPACK_DEFINE_MAP(data);
-
-// export_begin
-   creature_attr_def_data(){}
-   virtual ~creature_attr_def_data(){}
-
-    void add(const std::string& key, creature_attr_def& v)
-    {
-        data[key] = v;
-    }
-
-    const creature_attr_def* get(const std::string& key) 
-    {
-        auto it = data.find(key);
-        if (it == data.end())
-        {
-            return nullptr;
-        }
-
-        return &it->second;
-    }
-
-    inline vec_bin to_msgpack()
-    {
-        msgpack::sbuffer sbuf;
-        msgpack::pack(sbuf, *this);
-        vec_bin v;
-        v.assign(sbuf.data(), sbuf.data() + sbuf.size());
-        return std::move(v);
-    }
-
-    inline void from_msgpack(const vec_bin& data)
-    {
-        auto oh = msgpack::unpack(data.data(), data.size());
-        oh.get().convert(*this);
-    }
-// export_end
-};
+*/
 
 class CMsgPackLoader
 {
@@ -83,8 +35,13 @@ public:
     CMsgPackLoader();
     virtual ~CMsgPackLoader();
 
-    bool load();
-    bool save();
+    virtual bool Init();
+    virtual bool UnInit();
+
+    bool Load();
+    bool Reload();
+
+    bool Save();
 // export_end
 
 public:
@@ -93,3 +50,10 @@ public:
 // export_end
 
 };
+
+CMsgPackLoader* GetMsgPackLoader();
+
+
+#define gCMsgPackLoader  CDMSingleton<CMsgPackLoader>::Instance()
+
+#endif // __MSGPACK_LOADER_H_INCLUDE__

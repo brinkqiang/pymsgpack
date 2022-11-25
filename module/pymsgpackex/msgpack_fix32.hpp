@@ -16,6 +16,10 @@ public:
     {
         return "Fix32(" + std::to_string(value) + ")";
     }
+    std::string __str__()
+    {
+        return "Fix32(" + std::to_string(value) + ")";
+    }
 // export_end
 };
 

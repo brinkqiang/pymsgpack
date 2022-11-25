@@ -3,7 +3,7 @@ from pymsgpackex import *
 
 a = CMsgPackLoader()
 
-a.load()
+a.Load()
 
 b = creature_attr_def()
 
@@ -33,13 +33,12 @@ print("get jack",e)
 
 c = a.creature_attr_def_info.to_msgpack()
 
-#def list_to_hex_string(list_data):
-#    list_str = ''
-#    for x in list_data:
-#        list_str += x.encode('hex')
-#    return list_str
+j = a.creature_attr_def_info.get("reward_exp")
 
-#print(list_to_hex_string(c))
+print(j.key)
+print(j.maximun)
+print(j.defs)
+
 print(len(c))
-a.save()
-a.load()
+a.Save()
+a.Load()
