@@ -33,6 +33,7 @@ PYBIND11_MODULE(pymsgpackex, m) {
 
     pybind11::class_<Fix32Vec3>(m, "Fix32Vec3");
 
+    m.def("GetMsgPackLoader", &GetMsgPackLoader, pybind11::return_value_policy::automatic_reference);
     pybind11::class_<CMsgPackLoader>(m, "CMsgPackLoader")
     .def(pybind11::init<>())
     .def("Init", &CMsgPackLoader::Init, pybind11::return_value_policy::automatic_reference)

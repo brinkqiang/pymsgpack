@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from pymsgpackex import *
 
-msg = CMsgPackLoader()
+msg = GetMsgPackLoader()
 
 msg.Load()
 

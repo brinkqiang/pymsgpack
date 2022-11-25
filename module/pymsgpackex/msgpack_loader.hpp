@@ -50,9 +50,9 @@ public:
 // export_end
 
 };
-
+// export_begin
 CMsgPackLoader* GetMsgPackLoader();
-
+// export_end
 
 #define gCMsgPackLoader  CDMSingleton<CMsgPackLoader>::Instance()
 
