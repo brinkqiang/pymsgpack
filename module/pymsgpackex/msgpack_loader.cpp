@@ -1,8 +1,5 @@
 
 #include "msgpack_loader.hpp"
-#include "data.py.inl"
-#include "creature_attr_def.py.inl"
-#include "msgpack_loader.inl"
 
 CMsgPackLoader::CMsgPackLoader()
 {
@@ -15,10 +12,6 @@ CMsgPackLoader::~CMsgPackLoader()
 
 bool CMsgPackLoader::Init()
 {
-    data_init_py();
-    creature_attr_def_init_py();
-    msgpack_loader_init_py();
-
     if (!Load())
     {
         return false;

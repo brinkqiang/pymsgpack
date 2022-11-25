@@ -8,7 +8,7 @@ class Fix32 {
 public:
 // export_begin
     explicit Fix32() : value(0) {}
-    double value;
+    int64_t value;
 // export_end
     MSGPACK_DEFINE(value);
 // export_begin
