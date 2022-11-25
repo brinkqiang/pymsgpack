@@ -7,6 +7,9 @@
 #include <string>
 #include "msgpack_fix32.hpp"
 
+
+typedef std::vector<char> vec_bin;
+
 typedef std::variant<std::string, int64_t, double, bool, Fix32> variant_type;
 
 template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };

@@ -4,8 +4,6 @@
 
 #include "msgpack_variant.hpp"
 
-typedef std::vector<char> vec_bin;
-
 struct creature_attr_def
 {
     // export_begin
