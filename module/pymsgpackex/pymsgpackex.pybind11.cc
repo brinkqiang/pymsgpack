@@ -14,7 +14,7 @@
 
 #include "msgpack_loader.hpp"
 
-#include "creature_attr_def.msgpack.hpp"
+#include "export/creature_attr_def.msgpack.hpp"
 
 
 #include <pybind11/pybind11.h>

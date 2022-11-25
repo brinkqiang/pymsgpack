@@ -1,4 +1,4 @@
 #include "msgpack_fix32.hpp"
 #include "msgpack_variant.hpp"
 #include "msgpack_loader.hpp"
-#include "creature_attr_def.msgpack.hpp"
+#include "export/creature_attr_def.msgpack.hpp"
