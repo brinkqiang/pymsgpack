@@ -1,44 +1,45 @@
 # -*- coding: utf-8 -*-
 from pymsgpackex import *
 
-a = CMsgPackLoader()
+msg = CMsgPackLoader()
 
-a.Load()
+msg.Load()
 
-b = creature_attr_def()
+node = creature_attr_def()
 
 fix = Fix32()
 fix.value = 999
-b.maximun = fix
+node.maximun = fix
 fix.value = 1
-b.minimun = fix
+node.minimun = fix
 
-b.use_centimeter = True
+node.use_centimeter = True
 
-b.key = "tom"
-b.defs = "default"
-b.type = "fix32"
-b.desc = 1.23456789
-b.desc_bit = 888
+node.key = "tom"
+node.defs = "default"
+node.type = "fix32"
+node.desc = 1.23456789
+node.desc_bit = 888
 
-a.creature_attr_def_info.add("tom" , b)
+msg.creature_attr_def_info.add("tom" , node)
 
-d = a.creature_attr_def_info.get("tom")
-print("get tom",d)
-d.defs = "default_test"
-print("get tom defs:",d.defs)
+tom = msg.creature_attr_def_info.get("tom")
+print("get tom", tom)
+tom.defs = "default_test"
+print("get tom defs:", tom.defs)
 
-e = a.creature_attr_def_info.get("jack")
-print("get jack",e)
+jack = msg.creature_attr_def_info.get("jack")
+print("get jack", jack)
 
-c = a.creature_attr_def_info.to_msgpack()
+reward_exp = msg.creature_attr_def_info.get("reward_exp")
 
-j = a.creature_attr_def_info.get("reward_exp")
+print(reward_exp.key)
+print(reward_exp.maximun)
+print(reward_exp.defs)
+print(reward_exp.desc)
 
-print(j.key)
-print(j.maximun)
-print(j.defs)
+data = msg.creature_attr_def_info.to_msgpack()
 
-print(len(c))
-a.Save()
-a.Load()
+print(len(data))
+msg.Save()
+msg.Load()
