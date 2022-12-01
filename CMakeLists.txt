@@ -42,5 +42,6 @@ ADD_CUSTOM_COMMAND(
     PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${CMAKE_CURRENT_SOURCE_DIR}/module/pymsgpack/pymsgpack.py
+    ${CMAKE_CURRENT_SOURCE_DIR}/file/pymsgpack/creature_attr_def.py.bin
     $<TARGET_FILE_DIR:pymsgpack>
 )

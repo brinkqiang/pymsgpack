@@ -38,6 +38,11 @@ print(reward_exp.maximun)
 print(reward_exp.defs)
 print(reward_exp.desc)
 
+print(type(reward_exp.key))
+print(type(reward_exp.maximun))
+print(type(reward_exp.defs))
+print(type(reward_exp.desc))
+
 data = msg.creature_attr_def_info.to_msgpack()
 
 print(len(data))
