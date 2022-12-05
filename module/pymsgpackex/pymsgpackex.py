@@ -4,6 +4,7 @@ from pymsgpackex import *
 msg = GetMsgPackLoader()
 
 msg.Load()
+msg.Reload()
 
 node = creature_attr_def()
 
