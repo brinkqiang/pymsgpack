@@ -2,3 +2,4 @@
 #include "msgpack_variant.hpp"
 #include "msgpack_loader.hpp"
 #include "export/creature_attr_def.msgpack.hpp"
+#include "export/model.msgpack.hpp"

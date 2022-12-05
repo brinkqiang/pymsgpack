@@ -16,6 +16,8 @@
 
 #include "export/creature_attr_def.msgpack.hpp"
 
+#include "export/model.msgpack.hpp"
+
 
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -63,5 +65,40 @@ PYBIND11_MODULE(pymsgpackex, m) {
     .def("load", &creature_attr_def_data::load, pybind11::return_value_policy::automatic_reference)
     .def("save", &creature_attr_def_data::save, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("data", &creature_attr_def_data::data);
+
+    pybind11::class_<attached_model>(m, "attached_model")
+    .def(pybind11::init<>())
+    .def_readwrite("ObjName", &attached_model::ObjName)
+    .def_readwrite("BoneName", &attached_model::BoneName)
+    .def_readwrite("BasePointName", &attached_model::BasePointName)
+    .def_readwrite("Offset", &attached_model::Offset)
+    .def_readwrite("Rotation", &attached_model::Rotation)
+    .def_readwrite("Scale", &attached_model::Scale)
+    .def_readwrite("ModelID", &attached_model::ModelID);
+
+    pybind11::class_<model>(m, "model")
+    .def(pybind11::init<>())
+    .def_readwrite("model_id", &model::model_id)
+    .def_readwrite("name", &model::name)
+    .def_readwrite("meshes", &model::meshes)
+    .def_readwrite("skeleton", &model::skeleton)
+    .def_readwrite("graph", &model::graph)
+    .def_readwrite("physics_meshes", &model::physics_meshes)
+    .def_readwrite("pickbound", &model::pickbound)
+    .def_readwrite("effect_path", &model::effect_path)
+    .def_readwrite("attached_model", &model::attached_model)
+    .def_readwrite("repository", &model::repository)
+    .def_readwrite("not_use_physics_meshes", &model::not_use_physics_meshes)
+    .def_readwrite("box", &model::box);
+
+    pybind11::class_<model_data>(m, "model_data")
+    .def(pybind11::init<>())
+    .def("add", &model_data::add, pybind11::return_value_policy::automatic_reference)
+    .def("get", &model_data::get, pybind11::return_value_policy::automatic_reference)
+    .def("to_msgpack", &model_data::to_msgpack, pybind11::return_value_policy::automatic_reference)
+    .def("from_msgpack", &model_data::from_msgpack, pybind11::return_value_policy::automatic_reference)
+    .def("load", &model_data::load, pybind11::return_value_policy::automatic_reference)
+    .def("save", &model_data::save, pybind11::return_value_policy::automatic_reference)
+    .def_readwrite("data", &model_data::data);
 
 }

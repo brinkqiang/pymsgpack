@@ -48,3 +48,4 @@ data = msg.creature_attr_def_info.to_msgpack()
 print(len(data))
 msg.Save()
 msg.Load()
+
