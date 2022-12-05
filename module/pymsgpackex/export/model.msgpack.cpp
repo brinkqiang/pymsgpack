@@ -36,7 +36,7 @@ void model_data::from_msgpack(const vec_bin& data)
 
 bool model_data::load()
 {
-    std::string model_path = DMGetWorkPath() + PATH_DELIMITER_STR + R"(..\..\..\Server\server\engine\dm\commons\datas\model.py.bin)";
+    std::string model_path = DMGetWorkPath() + PATH_DELIMITER_STR + R"(model.py.bin)";
 
     std::string strData = DMLoadFile(model_path);
     if (strData.empty())
@@ -62,7 +62,7 @@ bool model_data::load()
 
 bool model_data::save()
 {
-    std::string model_path = DMGetWorkPath() + PATH_DELIMITER_STR + R"(..\..\..\Server\server\engine\dm\commons\datas\model.py.bin)";
+    std::string model_path = DMGetWorkPath() + PATH_DELIMITER_STR + R"(model.py.bin)";
 
 
     msgpack::sbuffer sbuf;
