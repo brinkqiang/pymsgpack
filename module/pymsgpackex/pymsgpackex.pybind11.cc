@@ -43,7 +43,8 @@ PYBIND11_MODULE(pymsgpackex, m) {
     .def("Load", &CMsgPackLoader::Load, pybind11::return_value_policy::automatic_reference)
     .def("Reload", &CMsgPackLoader::Reload, pybind11::return_value_policy::automatic_reference)
     .def("Save", &CMsgPackLoader::Save, pybind11::return_value_policy::automatic_reference)
-    .def_readwrite("creature_attr_def_info", &CMsgPackLoader::creature_attr_def_info);
+    .def_readwrite("creature_attr_def_info", &CMsgPackLoader::creature_attr_def_info)
+    .def_readwrite("model_info", &CMsgPackLoader::model_info);
 
     pybind11::class_<creature_attr_def>(m, "creature_attr_def")
     .def(pybind11::init<>())

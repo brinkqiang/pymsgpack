@@ -49,3 +49,31 @@ print(len(data))
 msg.Save()
 msg.Load()
 
+model = model()
+model.model_id = 99
+model.name = "abc"
+model.meshes.append("123")
+model.skeleton = "sk"
+model.graph = "gr"
+model.physics_meshes.append("123")
+model.pickbound.append(91.0)
+model.effect_path = "eff"
+
+att = attached_model()
+att.ObjName = "zhangsan"
+att.BoneName = "xyz"
+att.BasePointName = "point"
+att.Offset.append(1.1)
+att.Rotation.append(1.2)
+att.Scale = 1.3
+att.ModelID = 99
+
+model.attached_model.append(att)
+model.repository = "repos";
+model.not_use_physics_meshes = False
+model.box.append(1.5)
+
+msg.model_info.add(99 , model)
+
+model2 = msg.model_info.get(99)
+print("get model2 name: ", model2.name)
