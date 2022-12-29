@@ -43,8 +43,12 @@ struct creature_attr_def_data
 
     void from_msgpack(const vec_bin& data);
 
+    std::string to_str();
+
     bool load();
     bool save();
+
+
     // export_end
 };
 

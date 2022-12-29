@@ -34,6 +34,16 @@ void creature_attr_def_data::from_msgpack(const vec_bin& data)
     oh.get().convert(*this);
 }
 
+std::string creature_attr_def_data::to_str()
+{
+    vec_bin v = to_msgpack();
+    auto oh = msgpack::unpack((char*)v.data(), v.size());
+    std::stringstream ss;
+    ss << oh.get();
+
+    return ss.str();
+}
+
 bool creature_attr_def_data::load()
 {
     std::string creature_attr_def_path = DMGetWorkPath() + PATH_DELIMITER_STR + R"(creature_attr_def.py.bin)";
