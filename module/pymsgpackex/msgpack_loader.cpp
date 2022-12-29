@@ -32,6 +32,11 @@ bool CMsgPackLoader::Load()
     {
         return false;
     }
+    if (!model_info.load())
+    {
+        return false;
+    }
+
     return true;
 }
 
@@ -44,6 +49,7 @@ bool CMsgPackLoader::Reload()
     }
 
     std::swap(oLoader.creature_attr_def_info, this->creature_attr_def_info);
+    std::swap(oLoader.model_info, this->model_info);
 
     return true;
 }
@@ -54,7 +60,10 @@ bool CMsgPackLoader::Save()
     {
         return false;
     }
-
+    if (!model_info.save())
+    {
+        return false;
+    }
     return  true;
 }
 

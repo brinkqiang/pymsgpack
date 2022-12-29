@@ -45,6 +45,7 @@ public:
 public:
 // export_begin
     creature_attr_def_data creature_attr_def_info;
+    model_data             model_info;
 // export_end
 
 };
