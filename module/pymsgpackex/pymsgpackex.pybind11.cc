@@ -48,6 +48,7 @@ PYBIND11_MODULE(pymsgpackex, m) {
 
     pybind11::class_<creature_attr_def>(m, "creature_attr_def")
     .def(pybind11::init<>())
+    .def("__str__", &creature_attr_def::__str__, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("maximun", &creature_attr_def::maximun)
     .def_readwrite("minimun", &creature_attr_def::minimun)
     .def_readwrite("use_centimeter", &creature_attr_def::use_centimeter)

@@ -50,6 +50,7 @@ PYBIND11_MODULE(pymsgpack, m) {
     .def("get", &creature_attr_def_data::get, pybind11::return_value_policy::automatic_reference)
     .def("to_msgpack", &creature_attr_def_data::to_msgpack, pybind11::return_value_policy::automatic_reference)
     .def("from_msgpack", &creature_attr_def_data::from_msgpack, pybind11::return_value_policy::automatic_reference)
+    .def("to_str", &creature_attr_def_data::to_str, pybind11::return_value_policy::automatic_reference)
     .def_readwrite("datas", &creature_attr_def_data::datas);
 
     pybind11::class_<CMsgPackLoader>(m, "CMsgPackLoader")

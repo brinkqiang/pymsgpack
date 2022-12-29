@@ -72,6 +72,16 @@ struct creature_attr_def_data
         auto oh = msgpack::unpack((char*)data.data(), data.size());
         oh.get().convert(*this);
     }
+
+    inline std::string to_str()
+    {
+        std::vector<uint8_t> v = to_msgpack();
+        auto oh = msgpack::unpack((char*)v.data(), v.size());
+        std::stringstream ss;
+        ss << oh.get();
+
+        return ss.str();
+    }
 // export_end
 };
 
